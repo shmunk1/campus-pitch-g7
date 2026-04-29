@@ -1,6 +1,7 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 // Inline SVG icons matching the design
 const Ico = {
@@ -18,20 +19,19 @@ const Ico = {
 
 export default function Navbar() {
   const pathname = usePathname();
-  const router = useRouter();
   const screen = pathname === "/poster" ? "post" : pathname.startsWith("/demandes") ? "chat" : "feed";
 
   return (
     <>
       <header className="cp-topbar cpw-topbar">
         <div className="cp-topbar-left">
-          <a className="cp-logo" onClick={() => router.push("/")} style={{ cursor: "pointer" }}>
+          <Link href="/" className="cp-logo">
             <span className="cp-logo-mark" aria-hidden="true">
               <span className="cp-logo-mark-1" />
               <span className="cp-logo-mark-2" />
             </span>
             <span className="cp-logo-text">Campus Pitch</span>
-          </a>
+          </Link>
           <span className="cp-topbar-sep" aria-hidden="true">/</span>
           <span className="cp-campus">
             <span className="cp-campus-dot" />
@@ -40,38 +40,26 @@ export default function Navbar() {
         </div>
 
         <nav className="cpw-nav">
-          <button
-            className={"cp-nav-link " + (screen === "feed" ? "is-on" : "")}
-            onClick={() => router.push("/")}
-          >
+          <Link href="/" className={"cp-nav-link " + (screen === "feed" ? "is-on" : "")}>
             Feed
-          </button>
-          <button
-            className="cp-btn cp-btn--primary cp-btn--sm"
-            onClick={() => router.push("/poster")}
-          >
+          </Link>
+          <Link href="/poster" className="cp-btn cp-btn--primary cp-btn--sm">
             <span className="cp-btn-ico">{Ico.plus}</span>
             <span>Nouvelle demande</span>
-          </button>
+          </Link>
         </nav>
       </header>
 
       {/* Bottom nav mobile */}
       <nav className="cpw-bottomnav" aria-hidden="true">
-        <button
-          className={screen === "feed" ? "is-on" : ""}
-          onClick={() => router.push("/")}
-        >
+        <Link href="/" className={screen === "feed" ? "is-on" : ""}>
           <span className="cp-bn-ico">{Ico.spark}</span>
           <span>Feed</span>
-        </button>
-        <button
-          className={screen === "post" ? "is-on" : ""}
-          onClick={() => router.push("/poster")}
-        >
+        </Link>
+        <Link href="/poster" className={screen === "post" ? "is-on" : ""}>
           <span className="cp-bn-ico">{Ico.plus}</span>
           <span>Poster</span>
-        </button>
+        </Link>
       </nav>
     </>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Countdown from "@/components/design/Countdown";
 import SlotsRow from "@/components/design/SlotsRow";
 import Avatar from "@/components/design/Avatar";
@@ -53,7 +53,6 @@ function Stepper({ value, min, max, onChange }: {
 }
 
 export default function PosterPage() {
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -103,7 +102,7 @@ export default function PosterPage() {
         setError(data.error ?? "Une erreur est survenue.");
         return;
       }
-      router.push("/");
+      window.location.href = "/";
     } catch {
       setError("Erreur réseau. Réessaie.");
     } finally {
@@ -117,9 +116,11 @@ export default function PosterPage() {
   return (
     <div className="cp-screen cp-post">
       <header className="cp-page-head">
-        <button className="cp-back" onClick={() => router.push("/")}>
-          {Ico.back}<span>Retour au feed</span>
-        </button>
+        <Link href="/">
+          <button className="cp-back">
+            {Ico.back}<span>Retour au feed</span>
+          </button>
+        </Link>
         <div className="cp-eyebrow">Bordeaux</div>
       </header>
 
@@ -247,9 +248,11 @@ export default function PosterPage() {
             )}
 
             <div className="cp-form-foot">
-              <button type="button" className="cp-btn cp-btn--ghost cp-btn--md" onClick={() => router.push("/")}>
-                <span>Annuler</span>
-              </button>
+              <Link href="/">
+                <button type="button" className="cp-btn cp-btn--ghost cp-btn--md">
+                  <span>Annuler</span>
+                </button>
+              </Link>
               <button type="submit" className="cp-btn cp-btn--primary cp-btn--md" disabled={!valid || loading}>
                 <span className="cp-btn-ico">{Ico.arrow}</span>
                 <span>{loading ? "Publication…" : "Publier ma demande"}</span>

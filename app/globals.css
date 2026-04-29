@@ -125,9 +125,10 @@ button { font-family: inherit; cursor: pointer; }
 
 .cp-topbar-nav { display: flex; align-items: center; gap: 4px; }
 .cp-nav-link {
+  display: flex; align-items: center; justify-content: center;
   border: 0; background: transparent; color: var(--ink-2);
   height: 32px; padding: 0 12px; border-radius: var(--r-sm);
-  font-weight: 500; font-size: 13.5px;
+  font-weight: 500; font-size: 13.5px; text-decoration: none;
 }
 .cp-nav-link:hover { background: var(--paper-3); color: var(--ink); }
 .cp-nav-link.is-on { background: var(--paper-3); color: var(--ink); }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback, use, useRef } from "react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import Countdown from "@/components/design/Countdown";
 import SlotsRow from "@/components/design/SlotsRow";
 import Avatar from "@/components/design/Avatar";
@@ -93,7 +93,6 @@ export default function DemandeDetailPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = use(params);
-  const router = useRouter();
 
   const [demande, setDemande] = useState<Demande | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -179,9 +178,9 @@ export default function DemandeDetailPage({
     return (
       <div className="cp-screen" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 16, minHeight: "60vh" }}>
         <p style={{ color: "var(--ink-2)" }}>Cette demande n&apos;existe pas ou est expirée.</p>
-        <button className="cp-btn cp-btn--ghost cp-btn--md" onClick={() => router.push("/")}>
+        <Link href="/" className="cp-btn cp-btn--ghost cp-btn--md">
           {Ico.back}<span>Retour au feed</span>
-        </button>
+        </Link>
       </div>
     );
   }
@@ -243,9 +242,9 @@ export default function DemandeDetailPage({
   return (
     <div className="cp-screen">
       <header className="cp-page-head">
-        <button className="cp-back" onClick={() => router.push("/")}>
+        <Link href="/" className="cp-back">
           {Ico.back}<span>Retour au feed</span>
-        </button>
+        </Link>
         <div className="cp-eyebrow">Bordeaux</div>
       </header>
 
