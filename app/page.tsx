@@ -44,7 +44,7 @@ export default function FeedPage() {
         <div className="cp-hero-left">
           <div className="cp-eyebrow">Bordeaux · feed</div>
           <h1 className="cp-h1">
-            <span className="cp-h1-serif">Quelqu&apos;un</span> a besoin d&apos;oreilles aujourd&apos;hui&nbsp;?
+            <span className="cp-h1-serif">Quelqu&apos;un</span>{" "}a besoin d&apos;oreilles aujourd&apos;hui&nbsp;?
           </h1>
           {!loading && (
             <p className="cp-hero-sub">
@@ -85,7 +85,7 @@ export default function FeedPage() {
           {[
             { id: "all"       as const, label: "Toutes",       count: demandes.length },
             { id: "today"     as const, label: "Aujourd'hui" },
-            { id: "available" as const, label: "Places dispo" },
+            { id: "available" as const, label: "Places disponibles" },
           ].map((t) => (
             <button
               key={t.id}
