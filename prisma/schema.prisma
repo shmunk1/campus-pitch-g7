@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Demande {
+  id                   Int       @id @default(autoincrement())
+  prenom_nom           String
+  filiere              String
+  annee                String
+  sujet                String
+  description          String
+  duree                Int       // en minutes
+  date_heure           DateTime
+  lieu                 String
+  nb_souhaites         Int
+  nb_inscrits          Int       @default(0)
+  types_retour         String    // JSON array: ["Bienveillant","Cash","Fond","Forme"]
+  created_at           DateTime  @default(now())
+
+  messages             Message[]
+  inscriptions         Inscription[]
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  demande    Demande  @relation(fields: [demande_id], references: [id], onDelete: Cascade)
+  demande_id Int
+  prenom_nom String
+  contenu    String
+  created_at DateTime @default(now())
+}
+
+model Inscription {
+  id         Int      @id @default(autoincrement())
+  demande    Demande  @relation(fields: [demande_id], references: [id], onDelete: Cascade)
+  demande_id Int
+  prenom_nom String
+  created_at DateTime @default(now())
+}
