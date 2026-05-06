@@ -72,7 +72,7 @@ function InscriptionModal({
             <p style={{ color: "var(--rose-700)", fontSize: 13, marginBottom: 12 }}>{error}</p>
           )}
           <div className="cp-modal-actions">
-            <button type="button" className="cp-btn cp-btn--ghost cp-btn--md" onClick={onClose}>
+            <button className="cp-btn cp-btn--ghost cp-btn--md" onMouseDown={onClose}>
               <span>Annuler</span>
             </button>
             <button type="submit" className="cp-btn cp-btn--primary cp-btn--md" disabled={loading || !prenom.trim() || !nom.trim()}>
@@ -342,7 +342,7 @@ export default function DemandeDetailPage({
               className="cp-btn cp-btn--primary cp-btn--md"
               style={{ width: "100%", justifyContent: "center" }}
               disabled={slotsFilled >= slotsTotal}
-              onClick={() => setShowModal(true)}
+              onMouseDown={() => setShowModal(true)}
             >
               <span className="cp-btn-ico">{Ico.check}</span>
               <span>{slotsFilled >= slotsTotal ? "Complet" : "Je m’inscris"}</span>
@@ -360,7 +360,7 @@ export default function DemandeDetailPage({
             </div>
             <button
               className="cp-btn cp-btn--ghost"
-              onClick={() => fetchData()}
+              onMouseDown={() => fetchData()}
               title="Actualiser"
             >
               {Ico.refresh}
